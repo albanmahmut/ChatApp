@@ -1,2 +1,3 @@
-# MultiUserChat
-MultiUserChat
+# ChatApp 
+
+Created with IntelliJ IDEA

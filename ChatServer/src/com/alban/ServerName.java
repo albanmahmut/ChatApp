@@ -7,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
 
-//entry point for server app
+//entry point for server app, server main creates a socket
 public class ServerName {
 
     public static void main(String args[]) {
@@ -32,20 +32,12 @@ public class ServerName {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Request accepted from " + clientSocket);
 
-                //creating a new thread everytime when i get a new connection from the client
-                Thread t = new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            handleClientSocket(clientSocket);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                t.start();
+                //Created instance of ServerWorker class
+                ServerWorker worker = new ServerWorker(clientSocket);
+
+                //once the instance has created, just starting it
+                worker.start();
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,19 +45,5 @@ public class ServerName {
     }
 
 
-    //I did refactor this loop to method.
-    private static void handleClientSocket(Socket clientSocket) throws IOException, InterruptedException {
 
-        //Every Soocket has a output stream, printed out stream to this ooutput stream
-        OutputStream outputStream = clientSocket.getOutputStream();
-
-
-        //this loop set limits to 10 second, during this 10 seconds no other client can connect server
-        for (int i = 0; i < 10; i++) {
-            outputStream.write(("Time is " + new Date() + "\n").getBytes());
-            Thread.sleep(1000);
-
-        }
-        clientSocket.close();
-    }
 }
