@@ -1,7 +1,6 @@
 package com.alban;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.Date;
 
@@ -31,15 +30,23 @@ public class ServerWorker extends Thread {
     //I did refactor this loop to method.
     private void handleClientSocket() throws IOException, InterruptedException {
 
-        //Every Soocket has a output stream, printed out stream to this ooutput stream
+        //reading data from the client and sending data back to client
+        InputStream inputStream = clientSocket.getInputStream();
         OutputStream outputStream = clientSocket.getOutputStream();
 
+        //adding buffer reader so we can read line by line
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        String line;
 
-        //this loop set limits to 10 second, during this 10 seconds no other client can connect server
-        for (int i = 0; i < 10; i++) {
-            outputStream.write(("Time is " + new Date() + "\n").getBytes());
-            Thread.sleep(1000);
-
+        //in this reader loop, going to read each line.
+        while ( (line = reader.readLine()) != null) {
+            //keeping reading the lines
+            if ("quit".equalsIgnoreCase(line)) {
+                break;
+            }
+            //if its not quit, echo back whatever we see from the client
+            String msg = "Typed " + line + "\n";
+            outputStream.write(msg.getBytes());
         }
         clientSocket.close();
     }
