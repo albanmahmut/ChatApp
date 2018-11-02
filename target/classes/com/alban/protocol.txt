@@ -14,7 +14,10 @@ User & Server (communication protocol)
       * direct message
       * broadcast messages
 
- Commands:
+        Commands:
+            login <users> <password>
+            logoff
 
-    login <users> <password>
-    logoff
+4. Direct & Group Messaging
+
+

@@ -66,7 +66,7 @@ public class ServerWorker extends Thread {
 
                     //if dont recognize the command then sending the error back to client
                 } else {
-                    String msg = "unknown" + cmd + "\n";
+                    String msg = "unknown " + cmd + "\n";
                     outputStream.write(msg.getBytes());
                 }
 
@@ -81,6 +81,10 @@ public class ServerWorker extends Thread {
 
     //closing the current socket, sending to every other user status that current user has logged off.
     private void handleLogOff() throws IOException {
+
+        //when logoff, removing the online user from the working list
+        server.removeWorker(this);
+
         //sending other online users current user's status
         List < ServerWorker > workerList = server.getWorkerList();
 

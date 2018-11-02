@@ -63,4 +63,8 @@ public class server extends Thread {
         }
         super.run();
     }
+
+    public void removeWorker(ServerWorker serverWorker) {
+        workerList.remove(serverWorker);
+    }
 }
