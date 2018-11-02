@@ -11,13 +11,19 @@ User & Server (communication protocol)
 
 3. user -> user
 
-      * direct message
-      * broadcast messages
+      *direct message
+      *broadcast messages
 
         Commands:
             login <users> <password>
             logoff
 
 4. Handling Direct & Group Messaging
+
+       *sending messages from one to another user
+       *msg <user> body ...
+            for exp;
+                Mami: "msg phai Hello"          <--- SENT
+                Phai: "msg mami Hello"          <--- RECIEVED
 
 

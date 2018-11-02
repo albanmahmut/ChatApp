@@ -20,5 +20,6 @@ Created with IntelliJ IDEA
         5.2- Created commands to user so can can login, logoff and 
         their presens (they could see each other when the others are online)
         
-        
-    
+    6- Handling Direct & Group Messaging
+        6.1- Handled Logoff method
+        6.2- Sending messages from one to another user
