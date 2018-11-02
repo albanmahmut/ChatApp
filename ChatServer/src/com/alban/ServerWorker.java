@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -16,6 +17,8 @@ public class ServerWorker extends Thread {
     //tagging connection as user, assigning it to null if its not login
     private String login = null;
     private OutputStream outputStream;
+    private HashSet<String> topicSet = new HashSet<String>();
+
 
     public ServerWorker(server server, Socket clientSocket) {
         this.server = server;
@@ -65,7 +68,11 @@ public class ServerWorker extends Thread {
 
                     //handling message to sending to each other
                 } else if ("msg".equalsIgnoreCase(cmd)) {
-                    handleMessage(outputStream, tokens);
+                    String[] tokensMsg = StringUtils.split(line, null, 3);
+                    handleMessage(tokensMsg);
+
+                } else if ("join".equalsIgnoreCase(cmd)) {
+                    handleJoin(tokens);
 
                 } else {
                     String msg = "unknown " + cmd + "\n";
@@ -81,23 +88,52 @@ public class ServerWorker extends Thread {
         clientSocket.close();
     }
 
-    //format: "msg" "login" msg...
-    private void handleMessage(OutputStream outputStream, String[] tokens) throws IOException {
-
-     //
-     String sendTo = tokens[1];
-     String body = tokens [2];
-
-     //iterating to list of workers
-     List < ServerWorker > workerList = server.getWorkerList();
-     for (ServerWorker worker : workerList)
-         if (sendTo.equalsIgnoreCase(worker.getLogin())) {
-             String outMsg = "msg " + login + " " + body + "\n";
-             worker.send(outMsg);
-         }
-
+    //new function testing for to see if this topic is inside the topicset
+    public boolean isMemberOfTopic(String topic) {
+        return topicSet.contains(topic);
     }
 
+    private void handleJoin(String[] tokens) {
+
+    //topic
+        if (tokens.length > 1) {
+            String topic = tokens[1];
+            //by adding topic set, i say that this connection is part of the topic
+            topicSet.add(topic);
+        }
+    }
+
+    //format: "msg" "login" body ... (see the orders.txt file for more info)
+    //format: "msg" #topic body ... (see the orders.txt file for more info)
+    private void handleMessage(String[] tokens) throws IOException {
+
+        //
+        String sendTo = tokens[1];
+        String body = tokens[2];
+
+        //testing the first character (for hashtag #)
+        boolean isTopic = sendTo.charAt(0) == '#';
+
+        //iterating to list of workers if the logins match
+        List<ServerWorker> workerList = server.getWorkerList();
+        for (ServerWorker worker : workerList) {
+            //if this is a topic
+            if (isTopic) {
+                if (worker.isMemberOfTopic(sendTo)) {
+                    String outMsg = "msg " + login + " " + body + "\n";
+                    worker.send(outMsg);
+                }
+            } else {
+                //if the logins matches
+                if (sendTo.equalsIgnoreCase(worker.getLogin())) {
+                    //if matches, sending msg
+                    String outMsg = "msg " + login + " " + body + "\n";
+                    worker.send(outMsg);
+                }
+            }
+
+        }
+    }
     //closing the current socket, sending to every other user status that current user has logged off.
     private void handleLogOff() throws IOException {
 

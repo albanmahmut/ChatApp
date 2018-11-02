@@ -1,0 +1,28 @@
+User & Server (communication protocol)
+
+1. user -> server
+
+      *login / log off
+      *status
+
+2. server -> user
+
+      *online / offline
+
+3. user -> user
+
+      *direct message (user to user)
+      *broadcast messages (group messaging)
+
+        Commands:
+            -login <users> <password>
+            -logoff
+
+            -msg <user> body ...
+                for exp;
+                    Mami: "msg phai Hello"          <--- SENT
+                    Phai: "msg mami Hello"          <--- RECIEVED
+
+            -#topic                                 <--- Chatroom / Group msg
+            -join #topic (in order to send msg, the user needs to join)
+            -msg #topic body ...
