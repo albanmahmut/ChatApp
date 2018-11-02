@@ -74,6 +74,8 @@ public class ServerWorker extends Thread {
                 } else if ("join".equalsIgnoreCase(cmd)) {
                     handleJoin(tokens);
 
+                } else if ("leave".equalsIgnoreCase(cmd)) {
+                    handleLeave(tokens);
                 } else {
                     String msg = "unknown " + cmd + "\n";
                     outputStream.write(msg.getBytes());
@@ -86,6 +88,16 @@ public class ServerWorker extends Thread {
 
         }
         clientSocket.close();
+    }
+
+    private void handleLeave(String[] tokens) {
+
+        //leave the topic
+        if (tokens.length > 1) {
+            String topic = tokens[1];
+            //by areoving topic set, i say that this connection is part of the topic
+            topicSet.remove(topic);
+        }
     }
 
     //new function testing for to see if this topic is inside the topicset
@@ -120,7 +132,7 @@ public class ServerWorker extends Thread {
             //if this is a topic
             if (isTopic) {
                 if (worker.isMemberOfTopic(sendTo)) {
-                    String outMsg = "msg " + login + " " + body + "\n";
+                    String outMsg = "msg " + sendTo + ": " +  login + " " + body + "\n";
                     worker.send(outMsg);
                 }
             } else {
