@@ -24,3 +24,4 @@ Created with IntelliJ IDEA
         6.1- Handled Logoff method
         6.2- Sending messages from one to another user (direct messaging)
         6.3- Group messaging (anybody member of that topic will recieve the msg)
+        6.3.1- Implemented #topic for group, user is able to join and leave the group
