@@ -16,4 +16,7 @@ Created with IntelliJ IDEA
     
     5- User Presence
         *(Added Maven to my project for resolving token errors)
+        5.1- Created commands to handle users username, passwords.
+        5.2- Created commands to user so can can login, logoff and 
+        their presens (they could see each other when the others are online)
     
