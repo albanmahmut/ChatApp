@@ -45,7 +45,8 @@ public class ServerWorker extends Thread {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
 
-        //in this reader loop, going to read each line.
+        //in this reader loop, going to read each line. bla bla
+
         while ((line = reader.readLine()) != null) {
 
             //token splitting, splitting lines
