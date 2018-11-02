@@ -1,0 +1,20 @@
+User & Server (communication protocol)
+
+1. user -> server
+
+      *login / log off
+      *status
+
+2. server -> user
+
+      *online / offline
+
+3. user -> user
+
+      * direct message
+      * broadcast messages
+
+ Commands:
+
+    login <users> <password>
+    logoff

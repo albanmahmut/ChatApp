@@ -1,5 +1,7 @@
 package com.alban;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.Date;
@@ -40,6 +42,10 @@ public class ServerWorker extends Thread {
 
         //in this reader loop, going to read each line.
         while ( (line = reader.readLine()) != null) {
+
+
+            //token splitting, splitting lines
+            String[] tokens = StringUtils.split(line);
             //keeping reading the lines
             if ("quit".equalsIgnoreCase(line)) {
                 break;
