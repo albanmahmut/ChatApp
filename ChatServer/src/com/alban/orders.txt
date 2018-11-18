@@ -14,7 +14,7 @@ User & Server (communication protocol)
       *direct message (user to user)
       *broadcast messages (group messaging)
 
-        Commands:
+Commands:
             -login <users> <password>
             -logoff
 

@@ -31,11 +31,27 @@ public class ChatClient {
     public static void main(String[] args) throws IOException {
         ChatClient client = new ChatClient("localhost", 8818);
 
+        //added user listener and gettting callback for who is online
+        client.addUserStatusListener(new UserStatusListener() {
+            @Override
+            public void online(String login) {
+                System.out.println("ONLINE: " + login);
+            }
+
+            @Override
+            public void offline(String login) {
+                System.out.println("OFFLINE: " + login );
+            }
+        });
+
         //login status statement
         if (!client.connect()) {
             System.err.println("Connect failed.");
         } else {
             System.out.println("Connected successful");
+
+            //Created interface.. and here, before the users login I am registered all the listeners.
+
             if (client.login("phai", "phai")) {
                 System.out.println("Login successful.");
             } else {
@@ -55,9 +71,41 @@ public class ChatClient {
         System.out.println("Response Line: " + response);
 
         if ("Login successful.".equalsIgnoreCase(response)) {
+
+            //once the user logged in, then going to start to recieve event from the server.
+            //Basically, reading responses from the server
+            startMessageReader();
             return true;
         } else {
             return false;
+        }
+    }
+
+    //creating a new thread and going to execute read message loop
+    private void startMessageReader() {
+        Thread t  = new Thread() {
+            public void run() {
+                readMessageLoop();
+            }
+        };
+        t.start();
+    }
+
+    private void readMessageLoop() {
+        try {
+            String line;
+
+            //infinite loop that reading line from the server output
+            while ((line = bufferedIn.readLine()) != null) {
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
