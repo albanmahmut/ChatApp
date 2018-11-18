@@ -17,7 +17,7 @@ public class ServerWorker extends Thread {
     //tagging connection as user, assigning it to null if its not login
     private String login = null;
     private OutputStream outputStream;
-    private HashSet<String> topicSet = new HashSet<String>();
+    private HashSet < String > topicSet = new HashSet < String > ();
 
 
     public ServerWorker(server server, Socket clientSocket) {
@@ -107,7 +107,7 @@ public class ServerWorker extends Thread {
 
     private void handleJoin(String[] tokens) {
 
-    //topic
+        //topic
         if (tokens.length > 1) {
             String topic = tokens[1];
             //by adding topic set, i say that this connection is part of the topic
@@ -127,12 +127,12 @@ public class ServerWorker extends Thread {
         boolean isTopic = sendTo.charAt(0) == '#';
 
         //iterating to list of workers if the logins match
-        List<ServerWorker> workerList = server.getWorkerList();
-        for (ServerWorker worker : workerList) {
+        List < ServerWorker > workerList = server.getWorkerList();
+        for (ServerWorker worker: workerList) {
             //if this is a topic
             if (isTopic) {
                 if (worker.isMemberOfTopic(sendTo)) {
-                    String outMsg = "msg " + sendTo + ": " +  login + " " + body + "\n";
+                    String outMsg = "msg " + sendTo + ": " + login + " " + body + "\n";
                     worker.send(outMsg);
                 }
             } else {
@@ -216,6 +216,7 @@ public class ServerWorker extends Thread {
             } else {
                 String msg = "login error. Please try again...\n";
                 outputStream.write(msg.getBytes());
+                System.err.println("Login failed for " + login);
             }
         }
     }
