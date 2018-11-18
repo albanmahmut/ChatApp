@@ -184,7 +184,7 @@ public class ServerWorker extends Thread {
 
                 // so this login assigned to the this user (guest) in this case
                 this.login = login;
-                System.out.println("User is succesfully logged in: " + login);
+                System.out.println("The user: " + login + " succesfully logged in.");
 
                 //sending online message to every other serverworkers the current user has logged in
                 List < ServerWorker > workerList = server.getWorkerList();
@@ -202,7 +202,6 @@ public class ServerWorker extends Thread {
                     }
                 }
 
-
                 //sending other online users current user's status
                 String onLineMsg = login + " is online.\n";
                 for (ServerWorker worker: workerList) {
@@ -216,7 +215,7 @@ public class ServerWorker extends Thread {
             } else {
                 String msg = "login error. Please try again...\n";
                 outputStream.write(msg.getBytes());
-                System.err.println("Login failed for " + login);
+                System.err.println("Login failed for the user " + login);
             }
         }
     }

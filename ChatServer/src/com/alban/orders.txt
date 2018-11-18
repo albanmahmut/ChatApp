@@ -25,7 +25,7 @@ User & Server (communication protocol)
 
             -#topic                                 <--- Chatroom / Group msg
             -join #topic (in order to send msg, the user needs to join)
-            -leave #topic
+            -leave #topic (once the user leaves the topic, it wont be able to recieve any message from  the group)
             -send msg #topic body ...
             -recieve msg #topic:<login> body ...
 
