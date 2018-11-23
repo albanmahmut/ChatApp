@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="687.0">com.alban.MessagePane</node>
+    <node x="127.08054315476187" y="899.0">com.alban.UserListPane</node>
+    <node x="53.06566220238096" y="11.0">com.alban.MessageListener</node>
+    <node x="309.0864955357143" y="0.0">com.alban.UserStatusListener</node>
+    <node x="527.5805431547619" y="0.0">com.alban.ServerWorker</node>
+    <node x="108.79482886904759" y="123.0">com.alban.ChatClient</node>
+    <node x="587.5805431547619" y="600.0">com.alban.ServerMain</node>
+    <node x="256.58054315476187" y="1111.0">com.alban.LoginWindow</node>
+    <node x="543.0805431547619" y="410.0">com.alban.Server</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.alban.ChatClient" target="com.alban.MessageListener">
+      <point x="-83.75000000000003" y="-257.0" />
+      <point x="192.54482886904756" y="98.0" />
+      <point x="197.44066220238096" y="98.0" />
+      <point x="28.875" y="25.5" />
+    </edge>
+    <edge source="com.alban.MessagePane" target="com.alban.MessageListener">
+      <point x="-86.0" y="-81.0" />
+      <point x="43.0" y="667.0" />
+      <point x="71.8413318452381" y="667.0" />
+      <point x="71.8413318452381" y="98.0" />
+      <point x="81.94066220238096" y="98.0" />
+      <point x="-86.625" y="25.5" />
+    </edge>
+    <edge source="com.alban.UserListPane" target="com.alban.ChatClient">
+      <point x="-23.583333333333314" y="-81.0" />
+      <point x="244.99720982142856" y="874.0" />
+      <point x="268.5" y="874.0" />
+      <point x="268.5" y="667.0" />
+      <point x="228.43768601190476" y="667.0" />
+      <point x="-47.85714285714283" y="257.0" />
+    </edge>
+    <edge source="com.alban.LoginWindow" target="com.alban.ChatClient">
+      <point x="28.25" y="-81.0" />
+      <point x="397.83054315476187" y="1086.0" />
+      <point x="420.58054315476187" y="1086.0" />
+      <point x="420.58054315476187" y="667.0" />
+      <point x="372.0091145833333" y="667.0" />
+      <point x="95.71428571428572" y="257.0" />
+    </edge>
+    <edge source="com.alban.ChatClient" target="com.alban.UserStatusListener">
+      <point x="139.58333333333337" y="-257.0" />
+      <point x="415.87816220238096" y="98.0" />
+      <point x="414.0864955357143" y="98.0" />
+      <point x="21.0" y="36.5" />
+    </edge>
+    <edge source="com.alban.ServerWorker" target="com.alban.Server">
+      <point x="120.41666666666663" y="180.0" />
+      <point x="792.4972098214286" y="385.0" />
+      <point x="779.5805431547619" y="385.0" />
+      <point x="107.5" y="-70.0" />
+    </edge>
+    <edge source="com.alban.MessagePane" target="com.alban.ChatClient">
+      <point x="0.0" y="-81.0" />
+      <point x="129.0" y="667.0" />
+      <point x="132.72340029761904" y="667.0" />
+      <point x="-143.57142857142856" y="257.0" />
+    </edge>
+    <edge source="com.alban.UserListPane" target="com.alban.UserStatusListener">
+      <point x="117.91666666666669" y="-81.0" />
+      <point x="386.49720982142856" y="874.0" />
+      <point x="459.8863467261905" y="874.0" />
+      <point x="459.8863467261905" y="98.0" />
+      <point x="456.0864955357143" y="98.0" />
+      <point x="62.999999999999986" y="36.5" />
+    </edge>
+    <edge source="com.alban.ServerMain" target="com.alban.Server">
+      <point x="-42.25" y="-25.5" />
+      <point x="629.8305431547619" y="575.0" />
+      <point x="607.5805431547619" y="575.0" />
+      <point x="-64.5" y="70.0" />
+    </edge>
+    <edge source="com.alban.LoginWindow" target="com.alban.UserListPane">
+      <point x="-28.25" y="-81.0" />
+      <point x="341.33054315476187" y="1086.0" />
+      <point x="339.33054315476187" y="1086.0" />
+      <point x="70.75" y="81.0" />
+    </edge>
+    <edge source="com.alban.UserListPane" target="com.alban.MessagePane">
+      <point x="-117.91666666666663" y="-81.0" />
+      <point x="150.66387648809524" y="874.0" />
+      <point x="64.5" y="874.0" />
+      <point x="-64.5" y="81.0" />
+    </edge>
+    <edge source="com.alban.Server" target="com.alban.ServerWorker">
+      <point x="21.5" y="-70.0" />
+      <point x="693.5805431547619" y="385.0" />
+      <point x="696.1638764880952" y="385.0" />
+      <point x="24.083333333333258" y="180.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.38592420726991494" x="408.5" y="636.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

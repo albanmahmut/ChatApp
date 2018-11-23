@@ -19,7 +19,7 @@ Commands:
             -logoff
 
             -msg <user> body ...
-                for exp;
+                for ex;
                     Mami: "msg phai Hello"          <--- SENT
                     Phai: "msg mami Hello"          <--- RECIEVED
 
